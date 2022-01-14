@@ -9,8 +9,6 @@ public class Main {
     private static final String successfulResponseXpath = "//div[@class='rows text-center']";
 
     public static void main(String[] args) throws Exception {
-        args = new String[1];
-        args[0] = "IOE9745173447";
         if (args.length < 1) {
             throw new Exception("Case status must be provided");
         }
