@@ -1,6 +1,8 @@
 # USCIS Case Status Checker
 Instead of checking your case status 5 times a day, this project automates the process.
 
+<img src="/src/main/resources/diagram/case_status_online.png" width=100%>
+
 # Run
 ``./gradlew run --args="case_number"``
 
