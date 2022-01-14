@@ -5,8 +5,12 @@ import java.util.Map;
 
 public class Main {
     private static final String url = "https://egov.uscis.gov/casestatus/mycasestatus.do";
+    private static final String errorResponseXpath = "//div[@id='formErrorMessages']";
+    private static final String successfulResponseXpath = "//div[@class='rows text-center']";
 
     public static void main(String[] args) throws Exception {
+        args = new String[1];
+        args[0] = "IOE9745173447";
         if (args.length < 1) {
             throw new Exception("Case status must be provided");
         }
@@ -19,8 +23,18 @@ public class Main {
                 "caseStatusSearchBtn", "CHECK+STATUS"
         );
 
+        // Send HTTP request
         Http http = new Http(new URL(url));
         String response = http.postRequest(parameters);
-        System.out.printf("USCIS response: %n", response);
+
+        // Parse response
+        String errorResponse = HtmlParser.Parse(response, errorResponseXpath);
+        if (!errorResponse.equals("")) {
+            System.out.printf("Error received: %s", errorResponse);
+            return;
+        }
+
+        String successfulResponse = HtmlParser.Parse(response, successfulResponseXpath);
+        System.out.printf("Case status: %s", successfulResponse);
     }
 }

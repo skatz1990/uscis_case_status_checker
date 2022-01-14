@@ -19,7 +19,7 @@ public class Http {
             throw new Exception("Parameter map must not be null");
         }
 
-        String encodedData = URLEncoder.encode(getParamsString(parameters), StandardCharsets.UTF_8);
+        String encodedData = getParamsString(parameters);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setDoOutput(true);
         conn.setRequestMethod("POST");
@@ -48,9 +48,9 @@ public class Http {
     private static String getParamsString(Map<String, String> params) {
         StringBuilder result = new StringBuilder();
         for (Map.Entry<String, String> entry : params.entrySet()) {
-            result.append(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8));
+            result.append(entry.getKey());
             result.append("=");
-            result.append(URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8));
+            result.append(entry.getValue());
             result.append("&");
         }
 
