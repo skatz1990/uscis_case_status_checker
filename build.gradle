@@ -3,7 +3,7 @@ plugins {
 }
 apply plugin : "java"
 ext {
-    javaMainClass = "com.skatz.main"
+    javaMainClass = "com.skatz.Main"
 }
 
 application {
