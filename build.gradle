@@ -1,5 +1,13 @@
 plugins {
-    id 'java'
+    id "application"
+}
+apply plugin : "java"
+ext {
+    javaMainClass = "com.skatz.main"
+}
+
+application {
+    mainClassName = javaMainClass
 }
 
 group 'org.example'
